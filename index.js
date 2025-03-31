@@ -1,8 +1,10 @@
+// these are all the packages express
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
 const blogRoutes = require("./routes/blogRoutes"); // Now using routes/index.js
+dotenv = require("dotenv").config(); // Load environment variables from .env file
 
 const app = express();
 
@@ -15,7 +17,7 @@ app.use(methodOverride("_method"));
 app.use("/uploads", express.static("uploads"));
 
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/fitnessBlog", {
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => console.log("MongoDB Connected"))
