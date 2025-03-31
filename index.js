@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const methodOverride = require("method-override");
 const blogRoutes = require("./routes/blogRoutes"); // Now using routes/index.js
-dotenv = require("dotenv").config(); // Load environment variables from .env file
+require("dotenv").config(); // Load environment variables from .env file
 
 const app = express();
 
@@ -26,5 +26,6 @@ mongoose.connect(process.env.MONGO_URL, {
 // Use routes
 app.use("/", blogRoutes);
 
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
